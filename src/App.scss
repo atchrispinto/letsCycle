@@ -1,0 +1,169 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+$primary: #d7ed7e;
+$secondary: #77861d;
+
+::selection {
+  background: #5b633a;
+  color: white;
+}
+body {
+  font-family: "Antonio", sans-serif;
+  background-color: #181818;
+  text-align: center;
+  /* margin: auto; */
+  color: white;
+}
+header {
+  color: $primary;
+
+  h1 {
+    font-size: 5rem;
+    margin-top: 2rem;
+  }
+
+  p {
+    font-size: 2rem;
+    padding-bottom: 2rem;
+  }
+  span {
+    color: $secondary;
+  }
+}
+/* Chart */
+.chart {
+  grid-column: 1 / span 6;
+  grid-row: 2 / span 4;
+  max-height: 210px;
+  width: 85%;
+  margin: auto;
+  overflow: hidden;
+}
+/* First API */
+.api1 {
+  margin: 2rem auto;
+  display: grid;
+  max-width: 600px;
+  max-height: 330px;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+}
+.tide,
+.time {
+  font-size: 1rem;
+}
+.tide1 {
+  grid-column: 2;
+  grid-row: 1;
+}
+.tide2 {
+  grid-column: 3;
+  grid-row: 1;
+}
+.tide3 {
+  grid-column: 4;
+  grid-row: 1;
+}
+.tide4 {
+  grid-column: 5;
+  grid-row: 1;
+}
+.time1 {
+  grid-column: 2;
+  grid-row: 6;
+}
+.time2 {
+  grid-column: 3;
+  grid-row: 6;
+}
+.time3 {
+  grid-column: 4;
+  grid-row: 6;
+}
+.time4 {
+  grid-column: 5;
+  grid-row: 6;
+}
+.state {
+  color: var(--primary);
+}
+.state span {
+  color: white;
+  display: block;
+}
+.time span {
+  color: var(--primary);
+}
+/* Second API */
+.api2 {
+  color: var(--primary);
+}
+/* Temperature */
+.temperature {
+  cursor: pointer;
+  margin-bottom: 2.5rem;
+}
+.temperature h2,
+.wind h2 {
+  font-size: 1.75rem;
+}
+.tempDes {
+  font-size: 1.5rem;
+}
+.tempDeg {
+  color: var(--secondary);
+  font-size: 5rem;
+  line-height: 4rem;
+  margin: 1rem;
+}
+/* Wind */
+.wind-compass {
+  height: 6rem;
+  margin: 1rem;
+}
+.windDir {
+  font-size: 1.5rem;
+}
+.copyright {
+  margin-top: 2rem;
+  font-size: 1rem;
+  color: #bebebe;
+}
+.currentTime {
+  display: none;
+}
+@media screen and (min-width: 768px) {
+  main {
+    display: flex;
+    align-items: center;
+  }
+  .currentTime {
+    display: inline-block;
+    flex: 1;
+    font-size: 5rem;
+  }
+  .hours {
+    color: var(--primary);
+    line-height: 5rem;
+  }
+  .minutes {
+    color: var(--secondary);
+  }
+  .currDate {
+    color: var(--primary);
+    font-size: 2rem;
+  }
+  .api1 {
+    flex: 2;
+  }
+  .api2 {
+    flex: 1;
+  }
+  header h1 {
+    margin-top: 1rem;
+  }
+}
