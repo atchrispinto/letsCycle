@@ -3,60 +3,6 @@ if (
     long = position.coords.longitude;
     lat = position.coords.latitude;
 
-    //API 2 - openweathermap (Public)
-    const api = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=7797f19d8e620a623448b1a631d4c946&units=metric
-      `;
-
-    fetch(api)
-      .then((response2) => {
-        return response2.json();
-      })
-      .then((data2) => {
-        const tempTemp = data2.main.temp;
-        tempDeg.textContent = tempTemp.toFixed(1) + "°C";
-        tempDes.textContent = data2.weather[0].main;
-
-        let farenheit = Math.round(((9 / 5) * tempTemp + 32) * 10) / 10 + "°F";
-
-        tempMain.onclick = () => {
-          if (tempSpan.textContent === "°C") {
-            tempSpan.textContent = "°F";
-            tempDeg.textContent = farenheit;
-          } else {
-            tempSpan.textContent = "°C";
-            tempDeg.textContent = tempTemp.toFixed(1) + "°C";
-          }
-        };
-
-        let windSpeed = data2.wind.speed;
-        let windDegree = data2.wind.deg;
-
-        let val = Math.floor(windDegree / 22.5 + 0.5);
-        const arr = [
-          "N",
-          "NNE",
-          "NE",
-          "ENE",
-          "E",
-          "ESE",
-          "SE",
-          "SSE",
-          "S",
-          "SSW",
-          "SW",
-          "WSW",
-          "W",
-          "WNW",
-          "NW",
-          "NNW",
-        ];
-
-        let windCard = arr[val % 16];
-        windDir.textContent = `${windSpeed} MTR/S ${windCard}`;
-
-        windComp.style.transform = `rotate(${windDegree}deg)`;
-      });
-
     // API 1 - stormglass (Public key on purpose)
 
     fetch(

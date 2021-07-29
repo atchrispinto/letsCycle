@@ -1,7 +1,7 @@
 import React from "react";
+import classes from "./Time.module.css";
 
-const Time = () => {
-  const time = new Date();
+const Time = ({ time }) => {
   const DATE_OPTIONS = {
     weekday: "short",
     year: "numeric",
