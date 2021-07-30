@@ -4,10 +4,12 @@ import Time from "./components/Time.jsx";
 import Weather from "./components/Weather.jsx";
 import Wind from "./components/Wind.jsx";
 import "./App.scss";
+import Loader from "react-loader-spinner";
 
 function App() {
   const [tide, setTide] = useState();
   const [weather, setWeather] = useState();
+  const [load, setLoad] = useState(false);
 
   const time = new Date();
   const year = time.getFullYear();
@@ -16,6 +18,8 @@ function App() {
 
   const handleClick = async () => {
     try {
+      setLoad(true);
+
       const { coords } = await new Promise(function (resolve, reject) {
         navigator.geolocation.getCurrentPosition(resolve, reject);
       });
@@ -26,13 +30,14 @@ function App() {
       console.log(lat, long);
 
       const response1 = await fetch(
-        `https://api.12openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=7797f19d8e620a623448b1a631d4c946&units=metric`
+        `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=7797f19d8e620a623448b1a631d4c946&units=metric`
       );
       const data1 = await response1.json();
+      setLoad(false);
       setWeather(data1);
 
       const response2 = await fetch(
-        `https://api.12stormglass.io/v2/tide/extremes/point?lat=${lat}&lng=${long}&start=${year}-${month}-${day}`,
+        `https://api.stormglass.io/v2/tide/extremes/point?lat=${lat}&lng=${long}&start=${year}-${month}-${day}`,
         {
           headers: {
             Authorization:
@@ -56,18 +61,32 @@ function App() {
         <p>A Tide App</p>
       </header>
 
-      {!weather ? <button onClick={handleClick}>Get Tide Data</button> : ""}
+      {!weather && !load && (
+        <button onClick={handleClick}>Get Tide Data</button>
+      )}
 
-      {weather && (
-        <div className="container">
-          <Time time={time} />
-          {tide && <Chart tide={tide} />}
+      <div className="container">
+        <Loader
+          visible={load}
+          type="TailSpin"
+          color="#d7ed7e"
+          height={40}
+          width={40}
+        />
+        {tide && (
+          <>
+            <Time time={time} />
+            <Chart tide={tide} />
+          </>
+        )}
+        {weather && (
           <div className="weather-conatiner">
             <Weather weather={weather} />
             <Wind wind={weather.wind} />
           </div>
-        </div>
-      )}
+        )}
+      </div>
+      <div className="meee">Made by chriszackpinto</div>
     </div>
   );
 }

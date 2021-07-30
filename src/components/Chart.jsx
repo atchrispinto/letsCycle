@@ -1,6 +1,5 @@
 import React from "react";
 import { Line } from "react-chartjs-2";
-import classes from "./Chart.module.css";
 
 const Chart = ({ tide }) => {
   const levels = tide
@@ -15,7 +14,7 @@ const Chart = ({ tide }) => {
         return time.getHours() + ":" + time.getMinutes();
       })
     : "";
-  console.log(labels);
+
   const data = {
     labels: ["", ...labels, ""],
 

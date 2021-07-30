@@ -1,5 +1,4 @@
 import React from "react";
-import classes from "./Wind.module.css";
 
 const Wind = ({ wind }) => {
   const directions = [
@@ -23,7 +22,7 @@ const Wind = ({ wind }) => {
   let val = Math.floor(wind.deg / 22.5 + 0.5);
 
   return (
-    <div>
+    <div className="wind">
       <h2>Current Wind</h2>
       <svg
         className="wind-compass"

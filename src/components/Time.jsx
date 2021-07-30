@@ -1,5 +1,4 @@
 import React from "react";
-import classes from "./Time.module.css";
 
 const Time = ({ time }) => {
   const DATE_OPTIONS = {

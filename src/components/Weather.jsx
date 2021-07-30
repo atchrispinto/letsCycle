@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import classes from "./Weather.module.css";
 
 const Weather = ({ weather }) => {
   const temperatureCelsius = weather.main.temp.toFixed(1);
@@ -11,7 +10,7 @@ const Weather = ({ weather }) => {
   let temperatureUnit = unit ? "°C" : "°F";
 
   return (
-    <div onClick={handleUnitChange}>
+    <div onClick={handleUnitChange} className="weather">
       <h2>Current Weather</h2>
       <div className="tempSec">
         <h3 className="tempDeg">
